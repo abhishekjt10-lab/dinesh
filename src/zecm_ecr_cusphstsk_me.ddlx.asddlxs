@@ -1,0 +1,46 @@
+@Metadata.layer: #CORE
+@UI.headerInfo :
+{
+     typeName: 'Customer phase task',
+     typeNamePlural: 'Customer phase tasks',
+     title: {
+     type : #STANDARD,
+     label: 'Customer phase tasks',
+     value: 'Customer' }
+     ,
+ description :{ 
+ value: 'ProductType'
+ } 
+  }
+annotate view zecm_ecr_cusphstsk_c
+    with 
+{
+@UI.facet: [{ 
+               purpose : #STANDARD,
+               type : #IDENTIFICATION_REFERENCE,
+               label : 'Customer phase task',
+               position:  10
+             }
+]
+//    EcrKey;
+//    CusKey;
+@UI.identification: [{ position : 10 }]
+    @UI.lineItem: [{ position : 10 }]
+    EcrId;
+    @UI.identification: [{ position : 20 }]
+    @UI.lineItem: [{ position : 20 }]
+    Customer;
+    @UI.identification: [{ position : 30 }]
+    @UI.lineItem: [{ position : 30 }]
+    ProductType;
+    @UI.identification: [{ position : 40 }]
+    @UI.lineItem: [{ position : 40 }]
+    CustSpecAgr;
+//    CreatedBy;
+//    CreatedAt;
+//    LastChangedBy;
+//    LastChangedAt;
+    /* Associations */
+//    _ecr;
+    
+}

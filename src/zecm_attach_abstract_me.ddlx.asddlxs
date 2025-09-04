@@ -1,0 +1,12 @@
+@Metadata.layer: #CORE
+annotate entity zecm_attach_abstract
+    with 
+{
+@EndUserText.label: 'Upload BOP file'
+    attach;
+    @UI.hidden: true
+    filename;
+    @UI.hidden: true
+    mimetype;
+    
+}

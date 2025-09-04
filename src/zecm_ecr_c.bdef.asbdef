@@ -1,0 +1,78 @@
+projection implementation in class Zcl_ecm_ecr_proj unique;
+strict ( 2 );
+use draft;
+use side effects;
+
+define behavior for zecm_ecr_c alias ecr
+use etag
+{
+  use create;
+  use update;
+  use delete;
+  // This is the crucial line to enable instance features
+//  field ( features: instance ) hide_ad ;
+//  field (features) hide_ad;
+//static action copytemplate parameter Zecm_copy_template;
+  use association _costana { create; with  draft;}
+  use association _cusphstsk { create; with  draft;}
+  use association _invcus { create; with  draft;}
+  use association _mpc { create; with  draft;}
+  use association _obj2chng { create; with  draft;}
+  use association _att { create; with  draft;}
+
+  use action Activate;
+  use action Edit;
+  use action Resume;
+  use action Discard;
+  use action Prepare;
+  use action uploadBopFile;
+  use action copytemplate;
+}
+
+define behavior for zecm_ecr_costana_c alias costana
+{
+  use update;
+  use delete;
+
+  use association _ecr;
+}
+
+define behavior for zecm_ecr_att_c alias att
+{
+  use update;
+  use delete;
+
+  use association _ecr;
+}
+
+define behavior for zecm_ecr_cusphstsk_c alias cusphstsk
+{
+  use update;
+  use delete;
+
+  use association _ecr;
+}
+
+define behavior for zecm_ecr_invcus_c alias invcus
+{
+  use update;
+  use delete;
+
+  use association _ecr;
+}
+
+define behavior for zecm_ecr_mpc_c alias mpc
+{
+  use update;
+  use delete;
+
+  use association _ecr;
+}
+
+define behavior for zecm_ecr_pbj2chng_c alias pbj2chng
+{
+  use update;
+  use delete;
+
+  use association _ecr;
+}

@@ -1,0 +1,225 @@
+unmanaged implementation in class zbp_ecm_ecr_i unique;
+strict ( 2 );
+with draft;
+
+define behavior for zecm_ecr_i alias ecr
+//late numbering
+draft table zecm_ecr_d
+lock master total etag locallastchangedat
+authorization master ( instance )
+etag master locallastchangedat
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly ) EcrKey, EcrId, CreatedAt, CreatedBy, LastChangedAt, LastChangedBy;
+//  action uploadBopFile parameter zecm_attach_abstract result [1] $self;
+static factory action copytemplate parameter zecm_EcR_abstract [1];
+  action uploadBopFile result [1] $self;
+//  action copyTemplate parameter zecm_EcR_abstract result [1] $self;
+  determination fieldproperty on modify { update;field EcrType ;}
+  side effects { field HideAdmin affects $self;
+  field EcrType affects $self;
+  action uploadBopFile affects $self, messages; }
+  association _costana { create; with draft;}
+  association _cusphstsk { create;with draft; }
+  association _invcus { create; with draft; }
+  association _mpc { create; with draft;}
+  association _obj2chng { create;with draft; }
+  association _att { create;with draft; }
+  field ( features: instance ) EcrChgRep, EcrType;
+  mapping for zecm_ecr {
+  Amount = amount;
+  CreatedAt = created_at;
+  CreatedBy = created_by;
+  EcrChgRep = ecr_chg_rep;
+  EcrCorrIntDoc = ecr_corr_int_doc;
+  EcrCostRed = ecr_cost_red;
+  EcrDesc = ecr_desc;
+  EcrId = ecr_id;
+  EcrInitMgr = ecr_init_mgr;
+  EcrInitiator = ecr_initiator;
+  EcrKey = ecr_key;
+  EcrNewSupler = ecr_new_supler;
+  EcrOthers = ecr_others;
+  EcrOthersTxt = ecr_others_txt;
+  EcrProcVar = ecr_proc_variant;
+  EcrType = ecr_type;
+  IsCostPspReq = is_cost_psp_req;
+  LastChangedAt = last_changed_at;
+  LastChangedBy = last_changed_by;
+  locallastchangedat = locallastchangedat;
+  PlanFrDate = plan_fr_date;
+  PlanTrDate = plan_tr_date;
+  Waerk = waerk;
+  HideAdmin = hide_admin;
+  attach = attach;
+  filename = filename;
+  mimetype = mimetype;
+  }
+  draft action Activate optimized;
+  draft action Edit;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+}
+
+define behavior for zecm_ecr_costana_i alias costana
+//late numbering
+draft table zecm_costana_d
+lock dependent by _ecr
+authorization dependent by _ecr
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) EcrKey, CostKey;
+  association _ecr { with draft;}
+mapping for zecm_costana {
+Amount = amount;
+CostId = cost_id;
+CostKey = cost_key;
+CostType = cost_type;
+CreatedAt = created_at;
+CreatedBy = created_by;
+EcrKey = ecr_key;
+LastChangedAt = last_changed_at;
+LastChangedBy = last_changed_by;
+locallastchangedat = locallastchangedat;
+Waerk = waerk;
+  }
+}
+
+define behavior for zecm_ecr_att_i alias att
+//late numbering
+draft table zecm_attach_d
+lock dependent by _ecr
+authorization dependent by _ecr
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) EcrKey, attKey, mimetype, filename;
+  association _ecr{ with draft;}
+mapping for zecm_attachment {
+CreatedAt = created_at;
+CreatedBy = created_by;
+EcrKey = ecr_key;
+LastChangedAt = last_changed_at;
+LastChangedBy = last_changed_by;
+locallastchangedat = locallastchangedat;
+AttKey = att_key;
+Attachment = attachment;
+Mimetype = mimetype;
+Filename = filename;
+  }
+}
+
+define behavior for zecm_ecr_cusphstsk_i alias cusphstsk
+//late numbering
+draft table zecm_cusphstsk_d
+lock dependent by _ecr
+authorization dependent by _ecr
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) EcrKey, CusKey;
+  association _ecr { with draft;}
+mapping for zecm_cusphstsk {
+CreatedAt = created_at;
+CreatedBy = created_by;
+EcrKey = ecr_key;
+LastChangedAt = last_changed_at;
+LastChangedBy = last_changed_by;
+locallastchangedat = locallastchangedat;
+CusKey = cus_key;
+CustSpecAgr = cust_spec_agr;
+Customer = customer;
+EcrId = ecr_id;
+ProductType = product_type;
+
+  }
+}
+
+define behavior for zecm_ecr_invcus_i alias invcus
+//late numbering
+draft table zecm_invcus_d
+lock dependent by _ecr
+authorization dependent by _ecr
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) EcrKey, InvKey;
+  association _ecr { with draft;}
+mapping for zecm_invcus {
+CreatedAt = created_at;
+CreatedBy = created_by;
+EcrKey = ecr_key;
+LastChangedAt = last_changed_at;
+LastChangedBy = last_changed_by;
+locallastchangedat = locallastchangedat;
+CustSpecAgr = cust_spec_agr;
+Customer = customer;
+InvKey = inv_key;
+
+
+  }
+}
+
+define behavior for zecm_ecr_mpc_i alias mpc
+//late numbering
+draft table zecm_mpc_d
+lock dependent by _ecr
+authorization dependent by _ecr
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) EcrKey, MpcKey;
+  association _ecr { with draft;}
+mapping for zecm_mpc {
+CreatedAt = created_at;
+CreatedBy = created_by;
+EcrKey = ecr_key;
+LastChangedAt = last_changed_at;
+LastChangedBy = last_changed_by;
+locallastchangedat = locallastchangedat;
+Customer = customer;
+DsrPlant = dsr_plant;
+ProductType = product_type;
+ProductionPlant = production_plant;
+MpcKey = mpc_key;
+
+
+  }
+}
+
+define behavior for zecm_ecr_obj2chng_i alias obj2chng
+//late numbering
+draft table zecm_obj2chng_d
+lock dependent by _ecr
+authorization dependent by _ecr
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) EcrKey, Obj2chng;
+  association _ecr { with draft;}
+mapping for zecm_obj2chng {
+CreatedAt = created_at;
+CreatedBy = created_by;
+EcrKey = ecr_key;
+LastChangedAt = last_changed_at;
+LastChangedBy = last_changed_by;
+locallastchangedat = locallastchangedat;
+DocNo = doc_no;
+DocPart = doc_part;
+DocType = doc_type;
+DocVer = doc_ver;
+Obj2chng = obj2chng;
+Material = material;
+
+  }
+}

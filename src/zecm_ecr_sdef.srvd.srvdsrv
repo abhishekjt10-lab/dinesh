@@ -1,0 +1,10 @@
+@EndUserText.label: 'Service definition for ECR'
+define service Zecm_ecr_sdef {
+  expose zecm_ecr_c;
+  expose zecm_ecr_costana_c;
+  expose zecm_ecr_cusphstsk_c;
+  expose zecm_ecr_invcus_c;
+  expose zecm_ecr_mpc_c;
+  expose zecm_ecr_pbj2chng_c;
+  expose zecm_ecr_att_c;
+}

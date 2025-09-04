@@ -1,0 +1,40 @@
+@Metadata.layer: #CORE
+@UI.headerInfo :
+{
+     typeName: 'Involved Customer',
+     typeNamePlural: 'Involved Customers',
+     title: {
+     type : #STANDARD,
+     label: 'Involved Customers',
+     value: 'Customer' }
+//     ,
+// description :{ 
+// value: 'ProductType'
+// } 
+  }
+annotate view zecm_ecr_invcus_c
+    with 
+{
+@UI.facet: [{ 
+               purpose : #STANDARD,
+               type : #IDENTIFICATION_REFERENCE,
+               label : 'Involved Customers',
+               position:  10
+             }
+]
+//    EcrKey;
+//    InvKey;
+@UI.identification: [{ position : 10 }]
+    @UI.lineItem: [{ position : 10 }]
+    Customer;
+@UI.identification: [{ position : 20 }]
+    @UI.lineItem: [{ position : 20 }]    
+    CustSpecAgr;
+//    CreatedBy;
+//    CreatedAt;
+//    LastChangedBy;
+//    LastChangedAt;
+//    /* Associations */
+//    _ecr;
+    
+}

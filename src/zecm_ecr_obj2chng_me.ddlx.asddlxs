@@ -1,0 +1,49 @@
+@Metadata.layer: #CORE
+@UI.headerInfo :
+{
+     typeName: 'Objecttobechanged',
+     typeNamePlural: 'Objecttobechanged',
+     title: {
+     type : #STANDARD,
+     label: 'Objects to be changed' }
+//     value: 'Customer' }
+//     ,
+// description :{ 
+// value: 'ProductType'
+// } 
+  }
+annotate view zecm_ecr_pbj2chng_c
+    with 
+{
+@UI.facet: [{ 
+               purpose : #STANDARD,
+               type : #IDENTIFICATION_REFERENCE, 
+               label : 'Objects to be changed',
+               position:  10
+             }
+]
+//    EcrKey;
+//    Obj2chng;
+@UI.identification: [{ position : 10 }]
+    @UI.lineItem: [{ position : 10 }]
+    Material;
+    @UI.identification: [{ position : 20 }]
+    @UI.lineItem: [{ position : 20 }]
+    DocNo;
+    @UI.identification: [{ position : 30 }]
+    @UI.lineItem: [{ position : 30 }]
+    DocType;
+    @UI.identification: [{ position : 40 }]
+    @UI.lineItem: [{ position : 40 }]
+    DocVer;
+    @UI.identification: [{ position : 50 }]
+    @UI.lineItem: [{ position : 50 }]
+    DocPart;
+//    CreatedBy;
+//    CreatedAt;
+//    LastChangedBy;
+//    LastChangedAt;
+//    /* Associations */
+//    _ecr;
+    
+}
